@@ -18,17 +18,19 @@ import { emit } from './events'
 
 function Room() {
   let { roomID } = useParams();
-  const ref = useRef(null);
-  const ref2 = useRef(true);
+  const editorElementRef = useRef(null);
+  const onceRef = useRef(true);
   const viewRef = useRef<EditorView>();
   const providerRef = useRef<WebrtcProvider>();
   const { user, setAllUsers } = useContext(UsersContext);
 
   useEffect(() => {
-    if (ref.current && ref2.current && user.name) {
-      ref2.current = false;
+    if (editorElementRef.current && onceRef.current && user.name) {
+      onceRef.current = false;
       const ydoc = new Y.Doc()
-      const provider = new WebrtcProvider(`codemirra-${roomID}`, ydoc)
+      const roomName = `codemirra-${roomID}`
+      const provider = new WebrtcProvider(roomName, ydoc)
+      console.debug('Connecting to room:', roomName)
       providerRef.current = provider
       const ytext = ydoc.getText('codemirror')
 
@@ -51,7 +53,7 @@ function Room() {
         ]
       })
 
-      const editor = new EditorView({ state, parent: ref.current })
+      const editor = new EditorView({ state, parent: editorElementRef.current })
       viewRef.current = editor
 
       awareness.on('change', () => {
@@ -96,7 +98,7 @@ function Room() {
   return (
     <div className='container'>
       <Header handleScroll={handleScroll} />
-      <div ref={ref} />
+      <div ref={editorElementRef} />
     </div>
   )
 }
