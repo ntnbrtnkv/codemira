@@ -30,7 +30,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [\
             ["@codemirror/lang-javascript", "npm:6.1.8"],\
             ["@codemirror/state", "npm:6.2.1"],\
-            ["@types/debug", "npm:4.1.8"],\
             ["@types/react", "npm:18.2.7"],\
             ["@types/react-dom", "npm:18.2.4"],\
             ["@typescript-eslint/eslint-plugin", "virtual:e038cca38a52ce2a0af264afb938392790cbdbcbe0b309ab07b5d4a9e5623cb3c8a8bace9a82607cce92dcaabf709c6a74edd1adff751be1eed0c8a185d34e9b#npm:5.59.8"],\
@@ -39,7 +38,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@vanilla-extract/vite-plugin", "virtual:e038cca38a52ce2a0af264afb938392790cbdbcbe0b309ab07b5d4a9e5623cb3c8a8bace9a82607cce92dcaabf709c6a74edd1adff751be1eed0c8a185d34e9b#npm:3.8.2"],\
             ["@vitejs/plugin-react", "virtual:e038cca38a52ce2a0af264afb938392790cbdbcbe0b309ab07b5d4a9e5623cb3c8a8bace9a82607cce92dcaabf709c6a74edd1adff751be1eed0c8a185d34e9b#npm:4.0.0"],\
             ["codemirror", "npm:6.0.1"],\
-            ["debug", "virtual:531b6e79f7bcef9fa432316ab3ce4b1417df151c8e8350181023a666d55724fcedfdfe50cba6ee7c25a5adbd4f024013f036b79fb10bed8621708e2f7d85e6c6#npm:4.3.4"],\
             ["eslint", "npm:8.41.0"],\
             ["eslint-plugin-react-hooks", "virtual:e038cca38a52ce2a0af264afb938392790cbdbcbe0b309ab07b5d4a9e5623cb3c8a8bace9a82607cce92dcaabf709c6a74edd1adff751be1eed0c8a185d34e9b#npm:4.6.0"],\
             ["eslint-plugin-react-refresh", "virtual:e038cca38a52ce2a0af264afb938392790cbdbcbe0b309ab07b5d4a9e5623cb3c8a8bace9a82607cce92dcaabf709c6a74edd1adff751be1eed0c8a185d34e9b#npm:0.3.5"],\
@@ -1399,30 +1397,11 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
-      ["@types/debug", [\
-        ["npm:4.1.8", {\
-          "packageLocation": "./.yarn/cache/@types-debug-npm-4.1.8-a04e2ca136-a9a9bb40a1.zip/node_modules/@types/debug/",\
-          "packageDependencies": [\
-            ["@types/debug", "npm:4.1.8"],\
-            ["@types/ms", "npm:0.7.31"]\
-          ],\
-          "linkType": "HARD"\
-        }]\
-      ]],\
       ["@types/json-schema", [\
         ["npm:7.0.12", {\
           "packageLocation": "./.yarn/cache/@types-json-schema-npm-7.0.12-f05cfc0e99-00239e9723.zip/node_modules/@types/json-schema/",\
           "packageDependencies": [\
             ["@types/json-schema", "npm:7.0.12"]\
-          ],\
-          "linkType": "HARD"\
-        }]\
-      ]],\
-      ["@types/ms", [\
-        ["npm:0.7.31", {\
-          "packageLocation": "./.yarn/cache/@types-ms-npm-0.7.31-ea3b89342b-daadd354ae.zip/node_modules/@types/ms/",\
-          "packageDependencies": [\
-            ["@types/ms", "npm:0.7.31"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -2139,7 +2118,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["codemira", "workspace:."],\
             ["@codemirror/lang-javascript", "npm:6.1.8"],\
             ["@codemirror/state", "npm:6.2.1"],\
-            ["@types/debug", "npm:4.1.8"],\
             ["@types/react", "npm:18.2.7"],\
             ["@types/react-dom", "npm:18.2.4"],\
             ["@typescript-eslint/eslint-plugin", "virtual:e038cca38a52ce2a0af264afb938392790cbdbcbe0b309ab07b5d4a9e5623cb3c8a8bace9a82607cce92dcaabf709c6a74edd1adff751be1eed0c8a185d34e9b#npm:5.59.8"],\
@@ -2148,7 +2126,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@vanilla-extract/vite-plugin", "virtual:e038cca38a52ce2a0af264afb938392790cbdbcbe0b309ab07b5d4a9e5623cb3c8a8bace9a82607cce92dcaabf709c6a74edd1adff751be1eed0c8a185d34e9b#npm:3.8.2"],\
             ["@vitejs/plugin-react", "virtual:e038cca38a52ce2a0af264afb938392790cbdbcbe0b309ab07b5d4a9e5623cb3c8a8bace9a82607cce92dcaabf709c6a74edd1adff751be1eed0c8a185d34e9b#npm:4.0.0"],\
             ["codemirror", "npm:6.0.1"],\
-            ["debug", "virtual:531b6e79f7bcef9fa432316ab3ce4b1417df151c8e8350181023a666d55724fcedfdfe50cba6ee7c25a5adbd4f024013f036b79fb10bed8621708e2f7d85e6c6#npm:4.3.4"],\
             ["eslint", "npm:8.41.0"],\
             ["eslint-plugin-react-hooks", "virtual:e038cca38a52ce2a0af264afb938392790cbdbcbe0b309ab07b5d4a9e5623cb3c8a8bace9a82607cce92dcaabf709c6a74edd1adff751be1eed0c8a185d34e9b#npm:4.6.0"],\
             ["eslint-plugin-react-refresh", "virtual:e038cca38a52ce2a0af264afb938392790cbdbcbe0b309ab07b5d4a9e5623cb3c8a8bace9a82607cce92dcaabf709c6a74edd1adff751be1eed0c8a185d34e9b#npm:0.3.5"],\

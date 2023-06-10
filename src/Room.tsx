@@ -1,5 +1,4 @@
 import { useContext, useEffect, useRef } from 'react'
-import debug from 'debug';
 import { EditorView, basicSetup } from 'codemirror'
 import { EditorSelection, EditorState } from '@codemirror/state'
 import { javascript } from '@codemirror/lang-javascript'

@@ -2,7 +2,11 @@ import { useContext } from "react";
 import { UsersContext } from "../State/Users";
 import { header } from "./Header.css";
 
-const Header = ({ handleScroll }) => {
+type Props = {
+    handleScroll: () => void;
+}
+
+const Header = ({ handleScroll }: Props) => {
     const { allUsers } = useContext(UsersContext);
 
     return (

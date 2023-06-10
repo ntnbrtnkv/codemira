@@ -9,7 +9,7 @@ function UserDialog() {
 
         // TODO: validate for empty
         setUser({
-            name: e.target.name.value,
+            name: (e.target as any).name.value,
             color: '#30bced',
             light: '#30bced33'
         })
