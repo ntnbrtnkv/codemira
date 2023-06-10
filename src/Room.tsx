@@ -1,7 +1,7 @@
 import { useContext, useEffect, useRef } from 'react'
-
+import debug from 'debug';
 import { EditorView, basicSetup } from 'codemirror'
-import { EditorState } from '@codemirror/state'
+import { EditorSelection, EditorState } from '@codemirror/state'
 import { javascript } from '@codemirror/lang-javascript'
 
 import * as Y from 'yjs'
@@ -11,32 +11,33 @@ import { yCollab } from 'y-codemirror.next'
 import { WebrtcProvider } from 'y-webrtc'
 
 import UserDialog from './Components/UserDialog'
-import { UserContext } from './State/User'
+import { UsersContext } from './State/Users'
 import './Room.css'
+import Header from './Components/Header'
+import { useParams } from 'react-router-dom'
+import { emit } from './events'
 
-type Props = {
-  roomID: string;
-}
-
-const userColor = {};
-
-function App({ roomID }: Props) {
+function Room() {
+  let { roomID } = useParams();
   const ref = useRef(null);
   const ref2 = useRef(true);
-  const { user } = useContext(UserContext);
-
-  console.log(user);
+  const viewRef = useRef<EditorView>();
+  const providerRef = useRef<WebrtcProvider>();
+  const { user, setAllUsers } = useContext(UsersContext);
 
   useEffect(() => {
     if (ref.current && ref2.current && user.name) {
       ref2.current = false;
       const ydoc = new Y.Doc()
       const provider = new WebrtcProvider(`codemirra-${roomID}`, ydoc)
+      providerRef.current = provider
       const ytext = ydoc.getText('codemirror')
 
       const undoManager = new Y.UndoManager(ytext)
 
-      provider.awareness.setLocalStateField('user', {
+      const awareness = provider.awareness;
+
+      awareness.setLocalStateField('user', {
         name: user.name,
         color: user.color,
         colorLight: user.light
@@ -47,11 +48,34 @@ function App({ roomID }: Props) {
         extensions: [
           basicSetup,
           javascript(),
-          yCollab(ytext, provider.awareness, { undoManager })
+          yCollab(ytext, awareness, { undoManager })
         ]
       })
 
-      new EditorView({ state, parent: ref.current })
+      const editor = new EditorView({ state, parent: ref.current })
+      viewRef.current = editor
+
+      awareness.on('change', () => {
+        const users: any = [];
+
+        [...awareness.getStates().values()].forEach((state, clientId) => {
+          console.debug(`client id = ${clientId} with state`, state)
+          if (state.focus && clientId !== 0) {
+
+            const selection = EditorSelection.range(state.focus.anchor, state.focus.head)
+
+            setTimeout(() => {
+              editor.dispatch({
+                effects: EditorView.scrollIntoView(selection, { x: 'center', y: 'center' })
+              })
+            }, 0)
+          }
+
+          users.push(state.user)
+        });
+
+        setAllUsers(users);
+      })
     }
   }, [user.name]);
 
@@ -59,9 +83,23 @@ function App({ roomID }: Props) {
     return <UserDialog />
   }
 
+  const handleScroll = () => {
+    if (viewRef.current) {
+      const { state } = viewRef.current;
+
+      emit(providerRef.current.awareness, 'focus', {
+        head: state.selection.main.head,
+        anchor: state.selection.main.anchor
+      });
+    }
+  }
+
   return (
-    <div ref={ref} className='editor' />
+    <div className='container'>
+      <Header handleScroll={handleScroll} />
+      <div ref={ref} />
+    </div>
   )
 }
 
-export default App
+export default Room

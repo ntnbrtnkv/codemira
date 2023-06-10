@@ -1,9 +1,9 @@
 import { FC } from "react"
-import { UserProvider } from "./State/User"
+import { UsersProvider } from "./State/Users"
 import { Outlet } from "react-router-dom"
 
 const App: FC<{}> = () => {
-    return <UserProvider><Outlet /></UserProvider>
+    return <UsersProvider><Outlet /></UsersProvider>
 }
 
 export default App

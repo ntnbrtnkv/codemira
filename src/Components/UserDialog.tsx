@@ -1,8 +1,8 @@
 import { FormEventHandler, useContext } from "react"
-import { UserContext } from "../State/User"
+import { UsersContext } from "../State/Users"
 
 function UserDialog() {
-    const { setUser } = useContext(UserContext);
+    const { setUser } = useContext(UsersContext);
 
     const handleUser: FormEventHandler<HTMLFormElement> = (e) => {
         e.preventDefault();
